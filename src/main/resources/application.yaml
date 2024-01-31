@@ -1,0 +1,55 @@
+server:
+  port: 8299
+  servlet:
+    context-path: /
+  security:
+    basic:
+       enabled: false
+  compression:
+    enabled: true
+    min-response-size: 1024
+  forward-headers-strategy : framework
+
+spring:
+  application: weatherToday
+  datasource:
+    url: jdbc:h2:mem:liquidbaseDB
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+     show-sql: false
+     database-platform: org.hibernate.dialect.H2Dialect
+     ddl-auto: none
+  liquibase:
+    enabled: true
+    change-log: classpath:db/db.changelog-master.xml
+  h2:
+   console:
+     enabled: true
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+application:
+  configuration:
+    cors-allowed-list:
+      -  http://localhost:6555
+      -  ${PORTAL_URL:http://localhost:8080}
+      -  ${API_URL:http://localhost:9090}
+    public-api-list:
+      - /api/public/**
+
+logging:
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %thread ${PID} [%X{correlationId}] %-5level %logger{36} - %class{1} - %msg%n"
+

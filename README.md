@@ -1,4 +1,43 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/O-JDVcNX)
-# Spring Mysql API
+# JENSEN WEATHER API
 
-Template used: [start.spring.io](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.2.0&packaging=jar&jvmVersion=17&groupId=com.example&artifactId=spring_mysql_api&name=spring_mysql_api&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.spring_mysql_api&dependencies=devtools,web,data-jpa,mysql,restdocs)
+This api privides weather information in your city for today.
+
+### ENDPOINT INFORMATION
+
+Base path "http://localhost:8299/weatherapi"
+
+```
+GET: 
+  Description: FETCH ALL CITIES IN A COUNTRY
+  PATH:        'http://localhost:8299/weatherapi/{countryId}/cities'
+  PARAMETERS: countryID--ID of country
+  EXAMPLE: SWEDEN
+
+GET:
+  Description: GET WEATHER INFO OF A CITY
+  PATH:        http://localhost:8299/weatherapi/weather/{cityId}
+  PARAMETERS: cityId --ID of city
+  EXAMPLE: MALMO
+```
+
+### CURL COMMAND TO GET COUNTRIES
+```
+FETCH WEATHER OF CITY:
+
+curl -v --request GET  'http://localhost:8299/weatherapi/weather/hello'
+
+FETCH LIST OF CITIES IN A COUNTRY: 
+
+curl -v --request GET  http://localhost:8299/weatherapi/countryId/cities
+
+```
+### HOW TO BUILD DOCKER IMAGE AND DOCKER CONTAINER
+```
+
+docker login: 
+
+BUILD: 
+docker build -t weathertoday .
+RUN:
+docker run -p 8080:8080 -e "JAVA_OPTS=-Ddebug -Xmx128m" myorg/myapp
+```

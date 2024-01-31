@@ -1,0 +1,83 @@
+openapi: 3.0.1
+info:
+  title: Jensens Weather App
+  version: 1.0.0
+  x-spec-version: 0.0.1
+  description: Rest api to find today weather in your city.
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /weatherapi/{countryId}/cities:
+    get:
+      tags:
+        - listCitiesInCountry
+      summary: Get List of cities in a country
+      description: |-
+        Get List of cities in a country.
+      operationId: GetCities
+      parameters:
+        - $ref: '#/components/parameters/countryId'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listcitiesresponse'
+  /weatherapi/weather/{cityId}:
+    get:
+      tags:
+        - city weather
+      summary: city weather today
+      description: >-
+        city weather today.
+      operationId: cityweather
+      parameters:
+        - $ref: '#/components/parameters/cityId'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cityweatherresponse'
+components:
+  parameters:
+    countryId:
+      name: countryId
+      in: path
+      description: The id of country
+      required: true
+      schema:
+        type: string
+        default: MINIMAL
+    cityId:
+      name: cityId
+      in: path
+      description: The id of city.
+      required: true
+      schema:
+        type: string
+        default: MINIMAL
+  schemas:
+    listcitiesresponse:
+      type: object
+      description: array of city ids.
+      required:
+        - cities
+      properties:
+        cities:
+          type: array
+          description: Task identifier assigned by the server.
+          items:
+            type: string
+    cityweatherresponse:
+      type: string
+      description: country id.
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
