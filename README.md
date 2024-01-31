@@ -41,5 +41,5 @@ docker login:
 BUILD: 
 docker build -t weathertoday .
 RUN:
-docker run -p 8080:8080 -e "JAVA_OPTS=-Ddebug -Xmx128m" myorg/myapp
+docker run -p 8080:8080 -e "JAVA_OPTS=-Ddebug -Xmx128m" weathertoday
 ```
