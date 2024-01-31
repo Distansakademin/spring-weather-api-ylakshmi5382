@@ -1,6 +1,8 @@
 # JENSEN WEATHER API
 
 This api privides weather information in your city for today.
+###  GITHUB URL
+https://github.com/Distansakademin/spring-weather-api-ylakshmi5382
 
 ### ENDPOINT INFORMATION
 
