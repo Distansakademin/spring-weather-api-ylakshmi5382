@@ -9,7 +9,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: https://hub.docker.com/repository/docker/lakshmi5382/jensensweatherapp/general
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
         run: mvn clean install --file pom.xml
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker buildx build ../. -t weather-today -f ../Dockerfile
+        run: docker buildx build ../. -t weather-today
   test:
     runs-on: ubuntu-latest
     steps:
@@ -59,7 +59,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-            images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            images: ${{ env.REGISTRY }}/weather-today
     
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
