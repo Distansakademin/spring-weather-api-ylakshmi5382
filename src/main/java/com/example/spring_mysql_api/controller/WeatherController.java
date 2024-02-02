@@ -1,4 +1,4 @@
-package com.jensen.weather.weathertoday.controller;
+package com.example.spring_mysql_api.controller;
 
 import com.jensen.weather.rest.api.WeatherapiApi;
 import com.jensen.weather.rest.model.Listcitiesresponse;
