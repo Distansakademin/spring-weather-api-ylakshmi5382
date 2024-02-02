@@ -29,9 +29,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v2
-       - name: Test the Docker image
-         run: docker-compose up -d weather-today:latest
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn clean install --file pom.xml
+      - name: Build the Docker image
+        run: docker buildx build . -t weather-today:latest
+      - name: test  the Docker image
+        run: docker-compose up -d weather-today:latest
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
@@ -45,7 +55,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean install --file pom.xml
+      - name: Build the Docker image
+        run: docker buildx build . -t weather-today:latest
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to Docker Hub
@@ -65,7 +77,7 @@ jobs:
         with:
           context: "{{defaultContext}}"
           push: true
-          tags:  false
+          tags:  ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: image digest
