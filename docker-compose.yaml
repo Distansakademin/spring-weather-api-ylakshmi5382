@@ -3,6 +3,7 @@ services:
     build: .
     restart: always
     container_name: jensen-weatherapp
+    image: weather-today:laest
     ports:
       - "8299:8299"
       - "8787:8787"

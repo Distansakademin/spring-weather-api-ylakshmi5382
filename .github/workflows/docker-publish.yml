@@ -25,13 +25,13 @@ jobs:
       - name: Build with Maven
         run: mvn clean install --file pom.xml
       - name: Build the Docker image
-        run: docker buildx build .
+        run: docker buildx build . -t weather-today:latest
   test:
     runs-on: ubuntu-latest
     steps:
        - uses: actions/checkout@v2
        - name: Test the Docker image
-         run: docker run -p 8080:8080 -e "JAVA_OPTS=-Ddebug -Xmx128m" weather-today
+         run: docker-compose up -d
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-            images: ${{ env.REGISTRY }}/weather-today
+            images: ${{ env.REGISTRY }}/weather-today:latest
     
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
