@@ -26,7 +26,7 @@ jobs:
         run: mvn clean install --file pom.xml
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker buildx build ~/spring-weather-api-ylakshmi5382
+        run: docker buildx build .
   test:
     runs-on: ubuntu-latest
     steps:
