@@ -10,11 +10,14 @@
 	</parent>
 	<groupId>com.jensen.weather</groupId>
 	<artifactId>weathertoday</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>weathertoday</name>
 	<description>This api provides today weather information in your city and town.</description>
 	<properties>
 		<java.version>17</java.version>
+		<repository-owner>ylakshmi5382</repository-owner>
+		<repository-name>spring-weather-api-ylakshmi5382</repository-name>
+		<branch-name>dev</branch-name>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -97,7 +100,19 @@
 	</dependencies>
 
 	<build>
-		<finalName>app</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>17</source>
+						<target>17</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -142,7 +157,7 @@
 				</executions>
 			</plugin>
 
-			<!-- <plugin>
+			 <plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>1.4.10</version>
@@ -174,13 +189,85 @@
 					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 					<dockerfile>${pom.basedir}/Dockerfile</dockerfile>
 					<repository>https://hub.docker.com/lakshmi5382/jensensweatherapp</repository>
-					<tag>${project.version}</tag>
+					<tag>${project.name}:${project.version}</tag>
 					<buildArgs>
-						<JAR_FILE>target/app.jar</JAR_FILE>
+						<JAR_FILE>target/*.jar</JAR_FILE>
 					</buildArgs>
 				</configuration>
-			</plugin> -->
+			</plugin>
+
+
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<altDeploymentRepository>
+						internal.repo::default::file://${project.build.directory}/mvn-artifact
+					</altDeploymentRepository>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.12</version>
+				<configuration>
+					<message>Maven artifacts for ${project.version}</message>
+					<noJekyll>true</noJekyll>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+					<branch>refs/heads/${branch-name}</branch>
+					<includes>
+						<include>**/*</include>
+					</includes>
+					<merge>true</merge>
+					<repositoryName>${repository-name}</repositoryName>
+					<repositoryOwner>${repository-owner}</repositoryOwner>
+					<server>github</server>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+
+	<!-- <distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Temporary Staging Repository</name>
+			<url>file://${project.build.directory}/mvn-artifact</url>
+		</repository>
+
+	</distributionManagement> -->
+
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Temporary Staging Repository</name>
+			<url>file://${project.build.directory}/mvn-artifact</url>
+		</repository>
+
+		<!-- <repository>
+		<id>github</id>
+		<name>spring-weather-api-ylakshmi5382</name>
+		<url>https://github.com/Distansakademin/spring-weather-api-ylakshmi5382</url>
+	</repository> -->
+</distributionManagement>
+
+
+	<repositories>
+		<repository>
+			<id>PROJECT-REPO-URL</id>
+			<url>https://github.com/Distansakademin/spring-weather-api-ylakshmi5382/dev</url>
+					</repository>
+	</repositories>
+
+
 
 </project>

@@ -21,7 +21,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean install --file pom.xml
       - name: Build the Docker image
-        run: docker buildx build . -t weather-today
+        run: docker buildx build . -t jensensweather:latest
   test:
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +35,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean install --file pom.xml
       - name: Build the Docker image
-        run: docker buildx build . -t weather-today
+        run: docker buildx build . -t jensensweather:latest
       - name: test  the Docker image
         run: docker-compose up -d weather-today
   push_to_registry:
@@ -65,4 +65,4 @@ jobs:
           context: "{{defaultContext}}"
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/weather-today:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jensensweather:latest
