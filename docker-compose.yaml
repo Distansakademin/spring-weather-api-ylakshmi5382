@@ -1,6 +1,6 @@
 services:
   weathertoday:
-    build: docker
+    build: .
     restart: always
     container_name: jensenweatherapp
     ports:
