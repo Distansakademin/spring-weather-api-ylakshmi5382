@@ -19,6 +19,17 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+      - uses: s4u/maven-settings-action@v3.0.0
+        with:
+            servers: |
+              [{
+                "id": "registry.hub.docker.com",
+                "username": "lakshmi5382"
+                "password": "5382Yours"
+                "configuration": {
+                  "email": "v.l.bharadwaja@gmail.com"
+                }
+              }]
       - name: Build with Maven
         run: mvn clean install --file pom.xml
       - name: Build the Docker image

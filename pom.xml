@@ -183,4 +183,18 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<!-- <repository>
+        <id>internal.repo</id>
+        <name>Temporary Staging Repository</name>
+        <url>file://${project.build.directory}/mvn-artifact</url>
+    </repository> -->
+
+ <repository>
+    <id>github</id>
+    <name>spring-weather-api-ylakshmi5382</name>
+    <url>https://github.com/Distansakademin/spring-weather-api-ylakshmi5382</url>
+</repository>
+	</distributionManagement>
+
 </project>
