@@ -24,8 +24,8 @@ jobs:
             servers: |
               [{
                 "id": "registry.hub.docker.com",
-                "username": "lakshmi5382"
-                "password": "5382Yours"
+                "username": "lakshmi5382",
+                "password": "5382Yours",
                 "configuration": {
                   "email": "v.l.bharadwaja@gmail.com"
                 }
