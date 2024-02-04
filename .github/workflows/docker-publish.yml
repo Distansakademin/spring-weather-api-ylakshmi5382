@@ -25,14 +25,14 @@ jobs:
               [{
                 "id": "registry.hub.docker.com",
                 "username": "lakshmi5382",
-                "password": ${{ secrets.SERVER_DOCKERHUB_PWD }},
+                "password": '${{ secrets.SERVER_DOCKERHUB_PWD }}',
                 "configuration": {
                   "email": "v.l.bharadwaja@gmail.com"
                 }
               },{
                 "id": "github",
                 "username": "lakshmi5382",
-                "password": ${{ secrets.SERVER_GITHUB_PWD }}
+                "password": '${{ secrets.SERVER_GITHUB_PWD }}'
               }
               ]
       - name: Build with Maven
