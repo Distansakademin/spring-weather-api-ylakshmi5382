@@ -36,10 +36,14 @@ curl -v --request GET  http://localhost:8299/weatherapi/countryId/cities
 ### HOW TO BUILD DOCKER IMAGE AND DOCKER CONTAINER
 ```
 
-docker login: 
+docker login -u lakshmi5382
 
 BUILD: 
 docker build -t weathertoday .
+TAG:
+docker tag weathertoday lakshmi5382/weathertoday:0.0.2-SNAPSHOT
+PULL:
+docker pull lakshmi5382/weathertoday:0.0.2-SNAPSHOT
 RUN:
 docker run -p 8080:8080 -e "JAVA_OPTS=-Ddebug -Xmx128m" weathertoday
 ```
