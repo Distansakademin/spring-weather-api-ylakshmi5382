@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.jensen.weather</groupId>
 	<artifactId>weather-today</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>weathertoday</name>
 	<description>This api provides today weather information in your city and town.</description>
 	<properties>
