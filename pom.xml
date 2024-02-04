@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jensen.weather</groupId>
-	<artifactId>weathertoday</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>weather-today</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>weathertoday</name>
 	<description>This api provides today weather information in your city and town.</description>
 	<properties>
@@ -142,7 +142,7 @@
 				</executions>
 			</plugin>
 
-			<!-- <plugin>
+			 <plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>1.4.10</version>
@@ -173,13 +173,13 @@
 				<configuration>
 					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 					<dockerfile>${pom.basedir}/Dockerfile</dockerfile>
-					<repository>https://hub.docker.com/lakshmi5382/jensensweatherapp</repository>
+					<repository>registry.hub.docker.com/lakshmi5382/${project.artifactId}</repository>
 					<tag>${project.version}</tag>
 					<buildArgs>
-						<JAR_FILE>target/app.jar</JAR_FILE>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
 					</buildArgs>
 				</configuration>
-			</plugin> -->
+			</plugin>
 		</plugins>
 	</build>
 
