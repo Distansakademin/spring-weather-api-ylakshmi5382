@@ -47,3 +47,12 @@ docker pull lakshmi5382/weathertoday:0.0.2-SNAPSHOT
 RUN:
 docker run -p 8080:8080 -e "JAVA_OPTS=-Ddebug -Xmx128m" weathertoday
 ```
+### HOW TO RUN MYSQL DOCKER IMAGE
+
+STEP 1: docker run -d \
+-e MYSQL_ROOT_PASSWORD=secret \
+-e MYSQL_DATABASE=todos \
+mysql:8.0
+
+STEP 2: docker exec -i <container_name> mysql -p
+
