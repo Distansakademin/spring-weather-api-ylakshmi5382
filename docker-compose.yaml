@@ -3,7 +3,27 @@ services:
     build: .
     restart: always
     container_name: jensen-weatherapp
-    image: lakshmi5382/weather-today:latest
+    image: lakshmi5382/weathertoday:0.0.2-SNAPSHOT
     ports:
       - "8299:8299"
       - "8787:8787"
+    volumes:
+      - ./:/app
+    environment:
+        MYSQL_HOST: mysql
+        MYSQL_USER: jensens
+        MYSQL_PASSWORD: jensens1234
+        MYSQL_DB: weather
+
+
+  mysql:
+    image: mysql:8.0
+    hostname: mysql
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: jensens1234
+      MYSQL_DATABASE: weather
+
+  volumes:
+    todo-mysql-data:

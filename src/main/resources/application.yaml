@@ -13,10 +13,10 @@ server:
 spring:
   application: weatherToday
   datasource:
-    url: jdbc:h2:mem:liquidbaseDB
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://mysql:3306/weather
+    username: jensens
+    password: jensens1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
      show-sql: false
